@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <!-- Brand -->
+  <a class="navbar-brand" routerLink="/books">Logo</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+
+    <!-- Dropdown -->
+    <li *ngIf="isAuthenticated()" class="nav-item dropdown" >
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Admin
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/adminBooks">Gestion des livres</a>
+        <a class="dropdown-item" routerLink="/adminUsers">Gestion des utilisateurs</a>
+        <a class="dropdown-item" routerLink="/adminReserve">Gestion des réservations</a>
+      </div>
+    </li>
+
+
+    <li *ngIf="isAuthenticated()" class="nav-item dropdown" >
+      <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown">
+        Livres
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/books">Accéder à la bibliothèque</a>
+        <a class="dropdown-item" routerLink="/books/view/search">Rechercher des livres</a>
+        <a class="dropdown-item" routerLink="/books/user/reserve">Voir mes livres</a>
+      </div>
+    </li>
+  </ul>
+
+
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item order-last ml-auto p-2">
+      <a *ngIf="!isAuthenticated()" class="nav-link" routerLink="/register">S'enregistrer</a>
+    </li>
+    <li class="nav-item order-last ml-auto p-2">
+      <a *ngIf="!isAuthenticated()" class="nav-link" routerLink="/login">Login</a>
+      <a *ngIf="isAuthenticated()" class="nav-link btn" style="cursor:pointer" (click) = "logout()">Logout</a>
+    </li>
+  </ul>
+
+
+</nav>
+
+
+
+
+

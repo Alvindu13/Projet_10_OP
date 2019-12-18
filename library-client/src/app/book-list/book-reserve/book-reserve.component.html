@@ -1,0 +1,30 @@
+
+
+<br>
+
+<div>
+
+  <table class="table table-striped text-center">
+    <thead class="thead-dark">
+    <tr>
+      <th>Nom</th>
+      <th>Auteur</th>
+      <th>Genre</th>
+      <th>Date de réservation</th>
+      <th>Prolonger votre réservation (disponible 1 fois seulement)</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let b of books">
+      <td>{{b.name}}</td>
+      <td>{{b.author}}</td>
+      <td>{{b.genre}}</td>
+      <td>{{b.borrowDate}}</td>
+      <td><button class="btn btn-outline-success" (click)="onExtend(b)">Prolonger</button></td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>

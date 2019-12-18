@@ -1,0 +1,22 @@
+
+html,
+body{
+  height: 100%;
+}
+
+#cover {
+  background: #222 center center no-repeat;
+  background-size: cover;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin: 2em;
+  padding: 1em;
+  border-radius: 30px;
+  border: 1rem solid red;
+}
+
+#cover-caption {
+  width: 100%;
+}
