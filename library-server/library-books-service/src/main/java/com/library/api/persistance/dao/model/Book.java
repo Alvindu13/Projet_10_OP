@@ -26,7 +26,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String title;
     private String author;
     private Double price;
     private String genre;
@@ -44,7 +44,6 @@ public class Book {
     private LocalDate borrowDate;
 
     @ManyToOne
-    @JoinColumn(name = "borrower_id")
     @Nullable
     private AppUser borrower;
 

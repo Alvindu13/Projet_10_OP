@@ -46,7 +46,7 @@ public class BookController {
     @ApiOperation(value = "Find all books by keyword")
     @GetMapping("/selected/{keyword}")
     List<Book> findAllByKeyword(@PathVariable("keyword") String keyword) {
-        return bookSvc.findAllByNameContains(keyword);
+        return bookSvc.findAllByNameDistinctContains(keyword);
     }
 
     /**
@@ -90,7 +90,7 @@ public class BookController {
     @GetMapping("/user")
     List<Book> findAllByBorrower(HttpServletRequest request) {
         DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
-        String username =decodedJWT.getSubject();
+        String username = decodedJWT.getSubject();
        return bookSvc.findAllByBorrowerUsername(username);
     }
 
@@ -104,8 +104,23 @@ public class BookController {
     @PatchMapping("/{bookId}/reserve")
     void reserveBook(@PathVariable("bookId") Long bookId, HttpServletRequest request) {
         DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
-        String username =decodedJWT.getSubject();
+        String username = decodedJWT.getSubject();
         bookSvc.reserve(bookSvc.findBookById(bookId), username);
+    }
+
+    /**
+     * Add a user which wish reserve a book in the waiting queue.
+     *
+     * @param bookId  the book id
+     * @param request the front request with jwt token
+     */
+    @ApiOperation(value = "User wish reserve a book")
+    @PatchMapping("/{bookId}/waiting-queue")
+    void addToQueueReserveBook(@PathVariable("bookId") Long bookId, HttpServletRequest request) {
+        DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
+        String username = decodedJWT.getSubject();
+        Book book = bookSvc.findBookById(bookId);
+        bookSvc.addQueueToReserve(book, username);
     }
 
     /**

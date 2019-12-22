@@ -33,13 +33,25 @@ public interface BookSvc {
      */
     void extend(Book book);
 
+
+    /**
+     * Waiting file to reserve book..
+     *
+     * @param book
+     * @param username
+     */
+    void addQueueToReserve(Book book, String username);
+
+
     /**
      * Find all by name contains list.
      *
      * @param keyword the keyword
      * @return the list
      */
-    List<Book> findAllByNameContains(String keyword);
+    List<Book> findAllByNameDistinctContains(String keyword);
+
+    List<Book> findAllByTitle(String title);
 
     /**
      * Find all books list.

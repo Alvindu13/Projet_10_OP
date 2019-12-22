@@ -36,7 +36,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
      * @return the list
      */
     //@Query("SELECT DISTINCT(b.name) FROM Book b WHERE b.name = ?1")
-    List<Book> findDistinctByNameContains(String keyword);
+    List<Book> findDistinctByTitleContains(String keyword);
 
 
     /**
@@ -53,9 +53,10 @@ public interface BookRepository extends JpaRepository<Book, Long> {
      * @param title the title
      * @return the long
      */
-    long countByName(String title);
+    long countByTitle(String title);
 
 
+    List<Book> findAllByTitle(String title);
 }
 
 

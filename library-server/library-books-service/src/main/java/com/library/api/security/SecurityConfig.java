@@ -63,6 +63,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/login/**", "/register/**").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/books/**").authenticated();
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/books/user").authenticated();
+        // permet de faire fonctionner H2-console (html page)
+        http.headers().frameOptions().sameOrigin();
         http.authorizeRequests().anyRequest().permitAll(); // a delete après test
         http.addFilter(new JWTAuthenticationFilter(jwtProperties, authenticationManager()));
         http.addFilterBefore(new JWTAuthorizationFilter(jwtProperties) , UsernamePasswordAuthenticationFilter.class);
