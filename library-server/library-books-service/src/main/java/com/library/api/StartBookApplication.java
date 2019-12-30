@@ -61,38 +61,15 @@ public class StartBookApplication {
 
 
             bookSvc.save(new Book(
-                    1L, "A Guide to the Bodhisattva Way of Life", "Santideva", 12.99,
-                    "Aventure", false,
-                    false, null, LocalDate.now(),
-                    accountService.loadUserByUsername("alcaraz.jeremie@hotmail.fr")));
-            bookSvc.save(new Book(2L, "Le Titanic", "Rose", 4.99,
-                    "Drama", true,
-                    false, "unknow.png",
-                    LocalDate.of(2019, 8, 17),
-                    accountService.loadUserByUsername("alvin.mysterio@gmail.com")));
-            bookSvc.save(new Book(3L, "Le Titanic 2", "Rose", 4.99,
-                    "Drama", true,
-                    false, "unknow.png",
-                    LocalDate.of(2019, 8, 6),
-                    accountService.loadUserByUsername("alvin.mysterio@gmail.com")));
+                    1L, "A Guide to the Bodhisattva Way of Life", "Santideva",
+                    "Aventure", null));
             bookSvc.save(new Book(
-                    4L, "A Guide to the Bodhisattva Way of Life", "Santideva", 12.99,
-                    "Aventure", false,
-                    false, null, LocalDate.now(),
-                    accountService.loadUserByUsername("alvin.mysterio@gmail.com")));
-            bookSvc.save(new Book(
-                    5L, "Le Titanic", "Rose", 4.99,
-                    "Drama", true,
-                    false, "unknow.png",
-                    LocalDate.of(2019, 8, 6),
-                    accountService.loadUserByUsername("alvin.mysterio@gmail.com")));
-            bookSvc.save(new Book(
-                    6L, "Le Titanic", "Rose", 4.99,
-                    "Drama", true,
-                    false, "unknow.png",
-                    LocalDate.of(2019, 8, 6),
-                    accountService.loadUserByUsername("alvin.mysterio@gmail.com")));
+                    2L, "Tesla", "Geneva",
+                    "Aventure", null));
+
         };
+
+
     }
 
     @Bean

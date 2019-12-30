@@ -28,25 +28,9 @@ public class Book {
     private Long id;
     private String title;
     private String author;
-    private Double price;
     private String genre;
-
-    @Column(columnDefinition = "boolean default true")
-    private Boolean available;
-
-    @Nullable
-    private Boolean isProlongation;
-
     @Nullable
     private String photoName;
-
-    @Nullable
-    private LocalDate borrowDate;
-
-    @ManyToOne
-    @Nullable
-    private AppUser borrower;
-
 }
 
 

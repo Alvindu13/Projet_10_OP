@@ -48,6 +48,16 @@ public class BookSvcImpl implements BookSvc {
     AppUserRepository appUserRepository;
 
 
+    @Override
+    public void reserve(Book book, String username) {
+
+    }
+
+    @Override
+    public void extend(Book book) {
+
+    }
+
     /**
      * This method enable to
      * @param book
@@ -131,7 +141,7 @@ public class BookSvcImpl implements BookSvc {
      * @param book     selected book
      * @param username of user connected
      */
-    public void reserve(Book book, String username){
+    /*public void reserve(Book book, String username){
 
         // On récupère tous les exemplaires de ce livre "titre" dans une liste
         List<Book> books = bookRepository.findAllByTitle(book.getTitle());
@@ -144,7 +154,7 @@ public class BookSvcImpl implements BookSvc {
        /* // Renvoie le nb de livres qui correspond au titre et qui sont dispos
         Long nbBooksAvalaible = streamSupplier.get()
                 .filter((p) -> book.equals(p.getTitle()) && p.getAvailable())
-                .count();*/
+                .count();
 
         // traitement stream qui retourne le premier livre qui est dispo avec le titre demandé
         Optional<Book> bookCorrespond = streamSupplier.get()
@@ -164,7 +174,7 @@ public class BookSvcImpl implements BookSvc {
 
         System.err.println("Voici la queue = " + reserveQueue);
 
-    }
+    }*/
 
 
 
@@ -173,12 +183,12 @@ public class BookSvcImpl implements BookSvc {
      *
      * @param book book selected to extend it reservation
      */
-    public void borrow(Book book, String username) {
+    /*public void borrow(Book book, String username) {
         book.setBorrower(appUserRepository.findByUsername(reserveQueue.pop()));
         book.setBorrowDate(LocalDate.now());
         book.setAvailable(false);
         bookRepository.save(book);
-    }
+    }*/
 
 
     /**
@@ -186,14 +196,14 @@ public class BookSvcImpl implements BookSvc {
      *
      * @param book book selected to extend it reservation
      */
-    public void bookSystem(Book book, String username) {
+    /*public void bookSystem(Book book, String username) {
         if(book.getAvailable()){
             borrow(book, username);
-        } else /*reserve*/{
+        } else {
             addQueueToReserve(book, username);
             reserve(book, username);
         }
-    }
+    }*/
 
 
     /**
@@ -201,7 +211,7 @@ public class BookSvcImpl implements BookSvc {
      *
      * @param book book selected to extend it reservation
      */
-    public void extend(Book book) {
+    /*public void extend(Book book) {
 
         LocalDate ldt = book.getBorrowDate();
 
@@ -215,7 +225,7 @@ public class BookSvcImpl implements BookSvc {
             logger.info("reservation has already extend ! ");
 
         }
-    }
+    }*/
 
     /**
      * Search books by keyword.
@@ -284,32 +294,42 @@ public class BookSvcImpl implements BookSvc {
         return bookRepository.findBookById(bookId);
     }
 
+    @Override
+    public void save(Book newBook, String username) {
+
+    }
+
+    @Override
+    public void stopReserve(Book bookById) {
+
+    }
+
     /**
      * Save book.
      *
      * @param newBook the new book
      * @return
      */
-    @Override
+    /*@Override
     public void save(Book newBook, String username) {
         newBook.setIsProlongation(false);
         newBook.setAvailable(true);
         newBook.setBorrower(appUserRepository.findByUsername(username));
         bookRepository.save(newBook);
-    }
+    }*/
 
     /**
      * Stop book reserve.
      *
      * @param book
      */
-    @Override
+    /*@Override
     public void stopReserve(Book book) {
         book.setAvailable(true);
         book.setBorrower(null);
         book.setIsProlongation(false);
         //book.setReturnDate(currentDate);
-    }
+    }*/
 
 }
 
