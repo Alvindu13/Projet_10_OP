@@ -5,23 +5,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name="waiting-list")
+@Table(name="waitingList")
 public class FileAttenteReservation {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     //@JoinColumn(name = "address__id", referencedColumnName = "id")
-    Book bookId;
+    @ManyToOne
+    private Book bookId;
+
+    @ManyToOne
+    private AppUser userId;
 
 
-    AppUser userId;
+    private Long placeInQueue;
 
-
-    Integer placeInQueue;
+    public FileAttenteReservation(Book bookId, AppUser userId, Long placeInQueue) {
+        this.bookId = bookId;
+        this.userId = userId;
+        this.placeInQueue = placeInQueue;
+    }
 }

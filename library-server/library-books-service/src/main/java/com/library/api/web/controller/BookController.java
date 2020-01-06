@@ -86,13 +86,13 @@ public class BookController {
      * @param request the front request with jwt token
      * @return the books' borrower list
      */
-    @ApiOperation(value = "Find all books by borrower")
+    /*@ApiOperation(value = "Find all books by borrower")
     @GetMapping("/user")
     List<Book> findAllByBorrower(HttpServletRequest request) {
         DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
         String username = decodedJWT.getSubject();
        return bookSvc.findAllByBorrowerUsername(username);
-    }
+    }*/
 
     /**
      * Reserve one book.

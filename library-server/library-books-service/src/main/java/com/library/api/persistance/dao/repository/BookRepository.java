@@ -27,7 +27,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
      * @param username the username
      * @return the list
      */
-    List<Book> findAllByBorrowerUsername(String username);
+    //List<Book> findAllByBorrowerUsername(String username);
 
     /**
      * Find all by name contains list.

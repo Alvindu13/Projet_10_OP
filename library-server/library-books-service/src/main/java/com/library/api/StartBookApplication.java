@@ -8,11 +8,11 @@
 
 package com.library.api;
 
-import com.library.api.persistance.dao.model.AppRole;
-import com.library.api.persistance.dao.model.AppUser;
+import com.library.api.persistance.dao.model.*;
 import com.library.api.persistance.dao.repository.BookRepository;
+import com.library.api.persistance.dao.repository.ExemplaireRepository;
+import com.library.api.persistance.dao.repository.FileAttenteRsvRepository;
 import com.library.api.security.AccountService;
-import com.library.api.persistance.dao.model.Book;
 import com.library.api.security.jwt.JwtProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -44,7 +44,10 @@ public class StartBookApplication {
     }
 
     @Bean
-    CommandLineRunner start(AccountService accountService, BookRepository bookSvc){
+    CommandLineRunner start(AccountService accountService,
+                            BookRepository bookSvc,
+                            ExemplaireRepository exemplaireRepository,
+                            FileAttenteRsvRepository fileAttenteRsvRepository){
 
         restConfiguration.exposeIdsFor(AppUser.class);
         restConfiguration.exposeIdsFor(AppRole.class);
@@ -60,13 +63,27 @@ public class StartBookApplication {
             accountService.addRoleToUser("admin@gmail.com", "ADMIN");
 
 
-            bookSvc.save(new Book(
+            Book newBook = bookSvc.save(new Book(
                     1L, "A Guide to the Bodhisattva Way of Life", "Santideva",
                     "Aventure", null));
             bookSvc.save(new Book(
                     2L, "Tesla", "Geneva",
                     "Aventure", null));
 
+
+            exemplaireRepository.save(
+                    new Exemplaire(1L, newBook, true,
+                    false, LocalDate.now(),
+                    accountService.loadUserByUsername("admin@gmail.com")));
+
+
+            fileAttenteRsvRepository.save(
+                    new FileAttenteReservation(
+                            1L,
+                            newBook,
+                            accountService.loadUserByUsername("alvin.mysterio@gmail.com")
+                            , 1L
+                    ));
         };
 
 

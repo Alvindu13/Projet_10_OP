@@ -278,10 +278,10 @@ public class BookSvcImpl implements BookSvc {
      * @param username of user connected
      * @return
      */
-    @Override
+    /*@Override
     public List<Book> findAllByBorrowerUsername(String username) {
         return bookRepository.findAllByBorrowerUsername(username);
-    }
+    }*/
 
     /**
      * Find book by book_id.

@@ -74,7 +74,7 @@ public interface BookSvc {
      * @param username the username
      * @return the list
      */
-    List<Book> findAllByBorrowerUsername(String username);
+    //List<Book> findAllByBorrowerUsername(String username);
 
     /**
      * Find book by id book.
