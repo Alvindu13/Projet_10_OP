@@ -26,7 +26,7 @@ public class Exemplaire {
 
     @ManyToOne
     @Nullable
-    private Book book_id;
+    private Book bookId;
 
     //@Column(columnDefinition = "boolean default true")
     private Boolean available;
@@ -37,7 +37,6 @@ public class Exemplaire {
     @ManyToOne
     @Nullable
     private AppUser borrower;
-
 
 
 }

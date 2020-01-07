@@ -29,6 +29,7 @@ public class AppUser  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USER_ID")
     private Long id;
 
     @Column(unique = true)
@@ -41,6 +42,11 @@ public class AppUser  {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<AppRole> roles = new ArrayList<>();
+
+
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "users_id")
+    private FileAttenteReservation file;*/
 
     /*@OneToMany
     private Collection<Book> books = new ArrayList<>();*/

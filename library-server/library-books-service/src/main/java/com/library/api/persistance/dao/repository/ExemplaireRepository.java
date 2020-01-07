@@ -5,4 +5,6 @@ import com.library.api.persistance.dao.model.Exemplaire;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExemplaireRepository extends JpaRepository<Exemplaire, Long> {
+
+    Exemplaire findExemplaireById(Long bookId);
 }

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,18 +22,20 @@ public class FileAttenteReservation {
     private Long id;
 
     //@JoinColumn(name = "address__id", referencedColumnName = "id")
-    @ManyToOne
-    private Book bookId;
 
-    @ManyToOne
-    private AppUser userId;
+    //@OneToOne
+    @JoinColumn(name = "BOOK_ID", unique = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    private Book book;
 
+    //@OneToMany
+    @JoinColumn(name = "USER_ID", unique = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    private AppUser users;
 
     private Long placeInQueue;
 
-    public FileAttenteReservation(Book bookId, AppUser userId, Long placeInQueue) {
-        this.bookId = bookId;
-        this.userId = userId;
-        this.placeInQueue = placeInQueue;
-    }
+
+
+
 }

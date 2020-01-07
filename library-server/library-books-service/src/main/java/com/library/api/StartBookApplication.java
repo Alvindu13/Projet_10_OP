@@ -25,6 +25,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 @SpringBootApplication
@@ -63,10 +65,13 @@ public class StartBookApplication {
             accountService.addRoleToUser("admin@gmail.com", "ADMIN");
 
 
-            Book newBook = bookSvc.save(new Book(
+            Book newBook = bookSvc.save(
+                    new Book(
                     1L, "A Guide to the Bodhisattva Way of Life", "Santideva",
                     "Aventure", null));
-            bookSvc.save(new Book(
+
+            bookSvc.save(
+                    new Book(
                     2L, "Tesla", "Geneva",
                     "Aventure", null));
 
@@ -77,12 +82,24 @@ public class StartBookApplication {
                     accountService.loadUserByUsername("admin@gmail.com")));
 
 
+            exemplaireRepository.save(
+                    new Exemplaire(2L, newBook, true,
+                            false, LocalDate.now(),
+                            accountService.loadUserByUsername("alvin.mysterio@gmail.com")));
+
+
+
+            List<AppUser> users = new ArrayList<>();
+            users.add(accountService.loadUserByUsername("alvin.mysterio@gmail.com"));
+            users.add(accountService.loadUserByUsername("admin@gmail.com"));
+
+
             fileAttenteRsvRepository.save(
                     new FileAttenteReservation(
                             1L,
                             newBook,
-                            accountService.loadUserByUsername("alvin.mysterio@gmail.com")
-                            , 1L
+                            accountService.loadUserByUsername("alvin.mysterio@gmail.com"),
+                            1L
                     ));
         };
 
@@ -93,4 +110,7 @@ public class StartBookApplication {
     BCryptPasswordEncoder getBCPE(){
         return new BCryptPasswordEncoder();
     }
+
+
+
 }
