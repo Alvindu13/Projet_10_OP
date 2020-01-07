@@ -69,4 +69,38 @@ public class ScheduledTasks {
         }
     }
 
+
+    /**
+     * Batch scheduled. Send a email to customer all days à 11 am.
+     */
+    //@Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "0 0 11 ? * MON-SAT")
+    public void bookingBatch() {
+
+        /*RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<List<Book>> response = restTemplate.exchange(
+                apiUrl + "/books",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Book>>(){});
+
+        System.out.println("scheduled work : " + response.getBody());
+
+        List<Book> books = response.getBody();
+
+
+        if (books != null) {
+            books.forEach(book -> {
+                if (book.getBorrowDate() != null) {
+                    LocalDate dateStartEmail = book.getBorrowDate().plus(4, ChronoUnit.WEEKS);
+                    LocalDate currentDate = LocalDate.now();
+                    if((ChronoUnit.DAYS.between(dateStartEmail, currentDate) >= 0)){
+                        this.emailService.sendEmail(book);
+                    }
+                }
+            });
+        }*/
+    }
+
 }

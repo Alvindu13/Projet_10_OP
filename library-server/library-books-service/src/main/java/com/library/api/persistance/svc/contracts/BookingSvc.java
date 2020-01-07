@@ -9,6 +9,8 @@ public interface BookingSvc {
 
     void reserve(Long bookId, String username);
 
+    void cancelReserve(Long bookId, String username);
+
     void extend(Exemplaire bookExemplary, String username);
 
     void bookingChoose(Exemplaire bookExemplary, String username);

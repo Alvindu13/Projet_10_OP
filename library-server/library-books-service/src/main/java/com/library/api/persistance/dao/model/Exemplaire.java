@@ -26,7 +26,7 @@ public class Exemplaire {
 
     @ManyToOne
     @Nullable
-    private Book bookId;
+    private Book book;
 
     //@Column(columnDefinition = "boolean default true")
     private Boolean available;

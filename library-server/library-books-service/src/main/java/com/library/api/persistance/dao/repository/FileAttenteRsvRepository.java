@@ -16,5 +16,8 @@ public interface FileAttenteRsvRepository extends JpaRepository<FileAttenteReser
 
     FileAttenteReservation findFileAttenteReservationByBookAndUser(Book book, AppUser user);
 
+
     List<FileAttenteReservation> findFileAttenteReservationByBook(Book bookById);
+
+    List<FileAttenteReservation> findFileAttenteReservationByBookIdAndUserId(Long bookId, Long id);
 }

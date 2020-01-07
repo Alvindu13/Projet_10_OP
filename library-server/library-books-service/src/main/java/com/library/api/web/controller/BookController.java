@@ -94,56 +94,28 @@ public class BookController {
        return bookSvc.findAllByBorrowerUsername(username);
     }*/
 
-    /**
-     * Reserve one book.
-     *
-     * @param bookId  the book id
-     * @param request the front request with jwt token
-     */
-    @ApiOperation(value = "User reserve selected book")
-    @PatchMapping("/{bookId}/reserve")
-    void reserveBook(@PathVariable("bookId") Long bookId, HttpServletRequest request) {
-        DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
-        String username = decodedJWT.getSubject();
-        bookSvc.reserve(bookSvc.findBookById(bookId), username);
-    }
-
-    /**
-     * Add a user which wish reserve a book in the waiting queue.
-     *
-     * @param bookId  the book id
-     * @param request the front request with jwt token
-     */
-    @ApiOperation(value = "User wish reserve a book")
-    @PatchMapping("/{bookId}/waiting-queue")
-    void addToQueueReserveBook(@PathVariable("bookId") Long bookId, HttpServletRequest request) {
-        DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
-        String username = decodedJWT.getSubject();
-        Book book = bookSvc.findBookById(bookId);
-        bookSvc.addQueueToReserve(book, username);
-    }
 
     /**
      * Stop reservation.
      *
      * @param bookId
      */
-    @ApiOperation(value = "User return book")
+    /*@ApiOperation(value = "User return book")
     @PatchMapping("/{bookId}/reserve/stop")
     void stopReserveBookReturn(@PathVariable("bookId") Long bookId) {
         bookSvc.stopReserve(bookSvc.findBookById(bookId));
-    }
+    }*/
 
     /**
      * Reserve extend.
      *
      * @param bookId the book id
      */
-    @ApiOperation(value = "User extend book's reservation one time to 4 weeks")
+    /*@ApiOperation(value = "User extend book's reservation one time to 4 weeks")
     @PatchMapping("/extend/{bookId}")
     void reserveExtend( @PathVariable("bookId") Long bookId) {
         bookSvc.extend(bookSvc.findBookById(bookId));
-    }
+    }*/
 
 }
 

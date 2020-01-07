@@ -18,30 +18,6 @@ import java.util.List;
 public interface BookSvc {
 
 
-    /**
-     * Reserve book.
-     *
-     * @param book     the book
-     * @param username the username
-     */
-    void reserve(Book book, String username);
-
-    /**
-     * Extend book reserve.
-     *
-     * @param book the book
-     */
-    void extend(Book book);
-
-
-    /**
-     * Waiting file to reserve book..
-     *
-     * @param book
-     * @param username
-     */
-    void addQueueToReserve(Book book, String username);
-
 
     /**
      * Find all by name contains list.

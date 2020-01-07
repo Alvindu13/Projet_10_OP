@@ -59,7 +59,7 @@ public class UserController {
     @GetMapping("/selected/")
     AppUser findUserByUsername(HttpServletRequest request) {
         DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
-        String username =decodedJWT.getSubject();
+        String username = decodedJWT.getSubject();
         return appUserSvc.findByUsername(username);
     }
 

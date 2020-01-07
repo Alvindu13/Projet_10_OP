@@ -29,7 +29,7 @@ public class FileAttenteReservation {
     private Book book;
 
     //@OneToMany
-    @JoinColumn(name = "USER_ID", unique = true)
+    @JoinColumn(name = "USER_ID"/*, unique = true*/)
     @OneToOne(cascade = CascadeType.ALL)
     private AppUser user;
 

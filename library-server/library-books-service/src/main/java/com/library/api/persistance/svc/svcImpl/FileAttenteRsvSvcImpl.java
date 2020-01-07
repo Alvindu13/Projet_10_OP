@@ -35,6 +35,7 @@ public class FileAttenteRsvSvcImpl implements FileAtttenteRsvSvc {
         fileAttenteReservation.setBook(book);
         fileAttenteReservation.setUser(appUser);
         fileAttenteReservation.setPlaceInQueue(counter);
+        fileAttenteRsvRepository.save(fileAttenteReservation);
     }
 
     /**
