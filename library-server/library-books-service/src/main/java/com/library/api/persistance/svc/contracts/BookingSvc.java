@@ -7,7 +7,7 @@ public interface BookingSvc {
 
     void borrow(Exemplaire bookExemplary, String username);
 
-    void reserve(Exemplaire bookExemplary, String username);
+    void reserve(Long bookId, String username);
 
     void extend(Exemplaire bookExemplary, String username);
 

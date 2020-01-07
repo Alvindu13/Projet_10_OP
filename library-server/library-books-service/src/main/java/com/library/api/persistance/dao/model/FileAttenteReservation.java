@@ -24,18 +24,16 @@ public class FileAttenteReservation {
     //@JoinColumn(name = "address__id", referencedColumnName = "id")
 
     //@OneToOne
-    @JoinColumn(name = "BOOK_ID", unique = true)
+    @JoinColumn(name = "BOOK_ID"/*, unique = true*/)
     @OneToOne(cascade = CascadeType.ALL)
     private Book book;
 
     //@OneToMany
     @JoinColumn(name = "USER_ID", unique = true)
     @OneToOne(cascade = CascadeType.ALL)
-    private AppUser users;
+    private AppUser user;
 
     private Long placeInQueue;
-
-
 
 
 }

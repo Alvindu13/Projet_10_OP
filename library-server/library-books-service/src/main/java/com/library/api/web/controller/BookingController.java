@@ -56,8 +56,6 @@ public class BookingController {
     void borrowBook(@PathVariable("bookId") Long bookId, HttpServletRequest request) {
         DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
         String username = decodedJWT.getSubject();
-
-
         bookingSvc.borrow(bookExemplaryRepo.findExemplaireById(bookId), username);
     }
 
@@ -72,8 +70,27 @@ public class BookingController {
     void reserveBook(@PathVariable("bookId") Long bookId, HttpServletRequest request) {
         DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
         String username = decodedJWT.getSubject();
-        bookingSvc.reserve(bookExemplaryRepo.findExemplaireById(bookId), username);
+        bookingSvc.reserve(bookId, username);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -83,14 +100,14 @@ public class BookingController {
      * @param bookId  the book id
      * @param request the front request with jwt token
      */
-    @ApiOperation(value = "User added queue")
+    /*@ApiOperation(value = "User added queue")
     @PostMapping("/{bookId}/queue")
     void addUserToWaitingQueue(@PathVariable("bookId") Long bookId, HttpServletRequest request) {
         DecodedJWT decodedJWT = DecodeToken.decodeJWT(request, jwtProperties);
         String username = decodedJWT.getSubject();
         fileAtttenteRsvSvc.addUserInWaitingQueue(appUserSvc.findByUsername(username), bookSvc.findBookById(bookId));
         //bookingSvc.reserve(bookExemplaryRepo.findExemplaireById(bookId), username);
-    }
+    }*/
 
 
 

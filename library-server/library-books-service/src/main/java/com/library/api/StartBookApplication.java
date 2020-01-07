@@ -70,7 +70,7 @@ public class StartBookApplication {
                     1L, "A Guide to the Bodhisattva Way of Life", "Santideva",
                     "Aventure", null));
 
-            bookSvc.save(
+            Book newBook2 = bookSvc.save(
                     new Book(
                     2L, "Tesla", "Geneva",
                     "Aventure", null));
@@ -100,7 +100,28 @@ public class StartBookApplication {
                             newBook,
                             accountService.loadUserByUsername("alvin.mysterio@gmail.com"),
                             1L
-                    ));
+                    )
+            );
+
+            fileAttenteRsvRepository.save(
+                    new FileAttenteReservation(
+                            2L,
+                            newBook,
+                            accountService.loadUserByUsername("admin@gmail.com"),
+                            2L
+                    )
+            );
+
+            fileAttenteRsvRepository.save(
+                    new FileAttenteReservation(
+                            3L,
+                            newBook2,
+                            accountService.loadUserByUsername("user3@gmail.com"),
+                            1L
+                    )
+            );
+
+
         };
 
 

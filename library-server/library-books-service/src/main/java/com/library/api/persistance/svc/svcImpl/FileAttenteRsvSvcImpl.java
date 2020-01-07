@@ -9,6 +9,11 @@ import com.library.api.persistance.svc.contracts.FileAtttenteRsvSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+/**
+ * Une file pour un livre
+ */
 @Service
 public class FileAttenteRsvSvcImpl implements FileAtttenteRsvSvc {
 
@@ -28,12 +33,12 @@ public class FileAttenteRsvSvcImpl implements FileAtttenteRsvSvc {
         counter++;
         FileAttenteReservation fileAttenteReservation = new FileAttenteReservation();
         fileAttenteReservation.setBook(book);
-        fileAttenteReservation.getUsers().add(appUser);
+        fileAttenteReservation.setUser(appUser);
         fileAttenteReservation.setPlaceInQueue(counter);
     }
 
     /**
-     * Supprime un utilisateur de la file
+     * Supprime un utilisateur de la file d'attente du livre en paramètre
      * 2 CAS :
      * -> 48h
      * -> livre recup
@@ -42,8 +47,8 @@ public class FileAttenteRsvSvcImpl implements FileAtttenteRsvSvc {
      */
     @Override
     public void removeUserInWaitingQueue(AppUser appUser, Book book) {
-        //FileAttenteReservation fileAttenteReservation = fileAttenteRsvRepository.findByUser(appUser);
-        //fileAttenteRsvRepository.delete(fileAttenteReservation);
+        FileAttenteReservation fileAttenteReservationToRemove = fileAttenteRsvRepository.findFileAttenteReservationByBookAndUser(book, appUser);
+        fileAttenteRsvRepository.delete(fileAttenteReservationToRemove);
         //currentUserId = fileAttenteRsvRepository.findAll().get(0).getUser().getId(); //TEMPORAIRE  => pas du tout opti => on charge toute la table à chaque fois
     }
 
